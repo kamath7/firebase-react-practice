@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signup } from "../firebase/auth";
-import { Link } from "react-router-dom";
-
-function Signup(props) {
+import { login } from "../firebase/auth";
+import {Link} from 'react-router-dom';
+function Login(props) {
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    let newUser;
+    let user;
     setLoading(true);
     try {
-      newUser = await signup(data);
+      user = await login(data);
       reset();
     } catch (error) {
       console.log(error);
     }
-    if (newUser) {
-      props.history.push(`/profile/${newUser.uid}`);
+    if (user) {
+      props.history.push(`/profile/${user.uid}`);
     } else {
       setLoading(false);
     }
@@ -28,30 +27,6 @@ function Signup(props) {
       <div className="ui card login-card">
         <div className="content">
           <form className={formClassName} onSubmit={handleSubmit(onSubmit)}>
-            <div className="two fields">
-              <div className="field">
-                <label>
-                  First Name
-                  <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    ref={register}
-                  />
-                </label>
-              </div>
-              <div className="field">
-                <label>
-                  Last Name
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    ref={register}
-                  />
-                </label>
-              </div>
-            </div>
             <div className="field">
               <label>
                 Email
@@ -76,10 +51,10 @@ function Signup(props) {
             </div>
             <div className="field actions">
               <button className="ui primary button login" type="submit">
-                Signup
+                Login
               </button>
               or
-              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
             </div>
           </form>
         </div>
@@ -88,4 +63,4 @@ function Signup(props) {
   );
 }
 
-export default Signup;
+export default Login;

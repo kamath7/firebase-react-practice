@@ -1,0 +1,9 @@
+firebase init
+
+
+      allow read: if request.auth.uid == userId;
+      allow write: if request.auth.uid == userId;
+      allow update: if request.auth.uid == userId;
+//letting only authenticated users 
+
+firebase deploy --only firestore:rules
