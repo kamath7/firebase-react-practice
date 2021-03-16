@@ -7,3 +7,4 @@ firebase init
 //letting only authenticated users 
 
 firebase deploy --only firestore:rules
+firebase deploy --only storage:rules
