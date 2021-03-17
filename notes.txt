@@ -10,3 +10,7 @@ firebase deploy --only firestore:rules
 firebase deploy --only storage:rules
 
 package for firebase-admin 
+
+firebase cloud functions
+initialise using firebase init functions
+firebase deploy --only functions
