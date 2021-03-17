@@ -8,3 +8,5 @@ firebase init
 
 firebase deploy --only firestore:rules
 firebase deploy --only storage:rules
+
+package for firebase-admin 

@@ -1,19 +1,15 @@
-//HOC
-
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSession } from "../firebase/UsersProvider";
 
-function PrivateRoute({ component: Component, ...rest }) {
-  const { user , isAdmin } = useSession();
+const AdminRoute = ({ component: Component, ...rest }) => {
+  const { user, isAdmin } = useSession();
 
   return (
     <Route
       {...rest}
       render={(props) => {
-        const id = props.match.params.id;
-
-        if (!!user && (user.uid === id || isAdmin)) {
+        if (!!user && isAdmin) {
           return <Component {...props} />;
         } else {
           return <Redirect to="/login" />;
@@ -21,6 +17,6 @@ function PrivateRoute({ component: Component, ...rest }) {
       }}
     />
   );
-}
+};
 
-export default PrivateRoute;
+export default AdminRoute;
